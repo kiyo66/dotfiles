@@ -5,8 +5,8 @@ map('i', 'jj', '<ESC>', opts)
 map('i', 'っｊ', '<ESC>', opts)
 map('i', '{', '{}<Left>', opts)
 map('i', '(', '()<Left>', opts)
-map('n', '<C-p>', '<cmd>Telescope find_files', opts)
-map('n', '<C-g>', '<cmd>Telescope live_grep', opts)
+map('n', '<C-p>', '<cmd>Telescope find_files<CR>', opts)
+map('n', '<C-g>', '<cmd>Telescope live_grep<CR>', opts)
 map('v', '<C-c>', '"+y', opts)
 
 -- terminal
