@@ -1,3 +1,4 @@
 return {
-    "onsails/lspkind.nvim"
+    "onsails/lspkind.nvim",
+    config = true,
 }

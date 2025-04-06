@@ -21,20 +21,25 @@ return {
         },
         color_overrides = {
             mocha = {
-                base = "#000000",
-                mantle = "#000000",
-                crust = "#000000",
+                base = "#1b1b1b",
+                mantle = "#1b1b1b",
+                crust = "#1b1b1b",
             },
-        },
-        integrations = {
-            telescope = {
+            latte = {
+                base = "#ff0000",
+                mantle = "#242424",
+                crust = "#474747",
+            },
+            integrations = {
+                telescope = {
                 enabled = true,
-                style = "nvchad",
+                -- style = "nvchad",
             },
             dropbar = {
-                enabled = true,
-                color_mode = true,
+                enabled = false,
+                color_mode = false,
             },
         },
     }
-}
+}}
+
