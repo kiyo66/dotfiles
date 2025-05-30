@@ -3,4 +3,4 @@ dotfiles/fish/conf.d/*
 dotfiles/fish/fish_variables
 dotfiles/nvim/lazy-lock.json
 dotfiles/nvim/lazyvim.json
-./.gitignore
+.gitignore
