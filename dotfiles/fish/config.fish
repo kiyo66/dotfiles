@@ -1,5 +1,7 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
+    alias c="clear"
+    alias vim="nvim"
 end
 
 # Fish git prompt
@@ -19,8 +21,6 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
-alias c="clear"
-alias vim="nvim"
 
 fish_add_path ~/.local/bin/nvim/
 

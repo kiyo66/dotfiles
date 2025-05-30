@@ -24,24 +24,25 @@ end
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-require("mason-lspconfig").setup {
-    ensure_installed = {
-        "lua_ls",
-        "pylsp",
-        --"ruff"
-    }
-}
+--require("mason-lspconfig").setup {
+--	ensure_installed = {
+--		"lua_ls",
+--		"pylsp",
+--		--"ruff"
+--	}
+--}
 
-require("mason-lspconfig").setup_handlers{
-    function(server_name)
-        require("lspconfig")[server_name].setup{
-            on_attach = on_attach,
-            capabilities = capabilities,
-        }
-    end
-}
+local lspconfig = require("lspconfig")
+local servers = { "lua_ls", "pylsp" }
+
+for _, server in ipairs(servers) do
+    lspconfig[server].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
+end
 
 require("mason-null-ls").setup({
-    ensure_installed = { "mypy" }
+    --ensure_installed = { "mypy" }
 })
 
