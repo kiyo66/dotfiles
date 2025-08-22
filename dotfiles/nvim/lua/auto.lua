@@ -3,31 +3,6 @@ vim.api.nvim_create_autocmd('TermOpen', {
     command = "startinsert | setlocal norelativenumber | setlocal nonumber",
 })
 
--- install ruff
--- local function is_module_installed(module)
---     local handle = io.popen("python3 -m pip show " .. module .. " 2>/dev/null")
---     if handle == nil then
---         return false
---     end
---     local result = handle:read("*a")
---     handle:close()
---     return result and result ~= ""
--- end
--- 
--- local function install_pylsp_ruff()
---     if not is_module_installed("python-lsp-ruff") then
---         print("Installing python-lsp-ruff...")
---         vim.cmd("PylspInstall python-lsp-ruff")
---     else
---         print("python-lsp-ruff is already installed.")
---     end
--- end
-
--- vim.api.nvim_create_autocmd("VimEnter", {
---     callback = install_pylsp_ruff,
---     once = true,
--- })
-
 -- python formatting
 vim.api.nvim_create_autocmd({"BufNewFile", "BufRead"}, {
   pattern = "*.py",

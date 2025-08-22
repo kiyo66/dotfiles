@@ -5,12 +5,14 @@ return {
     local null_ls = require("null-ls")
     null_ls.setup({
       sources = {
-        null_ls.builtins.diagnostics.ruff,
-        null_ls.builtins.code_actions.refactoring,
-        null_ls.builtins.code_actions.gomodifytags,
+        require("null-ls").builtins.code_actions.refactoring,
+        require("null-ls").builtins.code_actions.gomodifytags,
       },
     })
-    require("mason-null-ls").setup({})
+    require("mason-null-ls").setup({
+      ensure_installed = {},
+      automatic_installation = true,
+    })
   end,
 }
 

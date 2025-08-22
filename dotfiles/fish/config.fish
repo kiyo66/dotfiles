@@ -1,7 +1,15 @@
+#!/usr/bin/env fish
+
 if status is-interactive
-    # Commands to run in interactive sessions can go here
-    alias c="clear"
+
+    alias py='python3'
+    alias c='clear'
     alias vim="nvim"
+    alias t='tmux'
+    alias tn='tmux new -s'
+    alias ta='tmux a -t'
+    alias tk='tmux kill-server'
+
 end
 
 # Fish git prompt
@@ -20,7 +28,4 @@ set __fish_git_prompt_char_untrackedfiles '☡'
 set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
-
-
-fish_add_path ~/.local/bin/nvim/
 

@@ -22,16 +22,10 @@ function fish_prompt
     set status_face (set_color brblue --bold)"'(;-;) >> \$ "
   end
 
-  set git_branch (__fish_git_prompt)
-
   echo -n (set_color white)"╭─"(set_color normal)
-  # __user_host
+#   __user_host
   __current_path
-  if test -n "$git_branch"
-    echo -e ''
-    echo -n "│ $git_branch"(set_color normal)
-  end
+#  __fish_git_prompt
   echo -e ''
   echo (set_color white)"╰─"$status_face(set_color normal)
 end
-
