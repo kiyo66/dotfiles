@@ -29,4 +29,4 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
-fish_add_path /home/ogawa/.config/nvim-v0.11.0/nvim-linux-x86_64/bin
+fish_add_path $HOME/.config/nvim-v0.11.0/nvim-linux-x86_64/bin
