@@ -49,3 +49,18 @@ vim.api.nvim_create_autocmd({"BufWritePre"}, {
   command = [[%s/\s\+$//e]],
 })
 
+
+vim.api.nvim_create_autocmd({"FocusGained", "BufEnter", "CursorHold", "CursorHoldI"}, {
+    command = "checktime"
+})
+
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = "*.py",
+  group = vim.api.nvim_create_augroup("RuffAutoFix", { clear = true }),
+  callback = function(args)
+    vim.fn.jobstart({
+      "ruff", "check", "--fix", "--exit-zero", args.file,
+      "--config", vim.fn.expand("~/.config/ruff/ruff.toml"),
+    }, { detach = true })
+  end,
+})

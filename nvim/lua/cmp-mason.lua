@@ -11,7 +11,14 @@ require("mason").setup({
   },
 })
 
-require("lspsaga").setup({})
+require("mason-lspconfig").setup({
+  ensure_installed = { "lua_ls", "pylsp", "ruff" },
+  automatic_installation = true,
+})
+
+require("lspsaga").setup({
+  lightbulb = { enable = false, sign = false, virtual_text = false, enable_in_insert = false },
+})
 
 local cmp = require("cmp")
 cmp.setup({
@@ -23,13 +30,13 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ["<CR>"] = cmp.mapping.confirm({ select = false }),
+    ["<CR>"]      = cmp.mapping.confirm({ select = false }),
     ["<C-Space>"] = cmp.mapping.complete(),
-    ["<C-e>"] = cmp.mapping.abort(),
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<C-e>"]     = cmp.mapping.abort(),
+    ["<Tab>"]     = cmp.mapping(function(fallback)
       if cmp.visible() then cmp.select_next_item() else fallback() end
     end, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(function(fallback)
+    ["<S-Tab>"]   = cmp.mapping(function(fallback)
       if cmp.visible() then cmp.select_prev_item() else fallback() end
     end, { "i", "s" }),
   }),
@@ -48,8 +55,13 @@ cmp.setup({
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
+vim.diagnostic.config({
+  update_in_insert = false,
+  virtual_text = true,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("UserLspKeymaps", {}),
+  group = vim.api.nvim_create_augroup("UserLspKeymaps", { clear = true }),
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
     local key = "__lsp_attached_" .. client.name
@@ -58,7 +70,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
       return
     end
     vim.b[key] = true
-
     local set = vim.keymap.set
     local opts = { noremap = true, silent = true, buffer = args.buf }
     set("n", "gd", "<cmd>Lspsaga goto_definition<CR>", opts)
@@ -74,60 +85,28 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
-local lspconfig = require("lspconfig")
-
-local __did_setup = {}
-local function setup_once(server, opts)
-  if __did_setup[server] then return end
-  __did_setup[server] = true
-  lspconfig[server].setup(opts)
-end
-
-local servers = { "lua_ls", "pylsp" }
-
-require("mason-lspconfig").setup({
-  ensure_installed = servers,
-  automatic_installation = true,
-})
-
-for _, server in ipairs(servers) do
-  local opts = { capabilities = capabilities }
-  if server == "lua_ls" then
-    opts.settings = {
-      Lua = {
-        diagnostics = { globals = { "vim" } },
-        workspace = { checkThirdParty = false },
-        telemetry = { enable = false },
-      },
-    }
-  elseif server == "pylsp" then
-    opts.settings = {
-      pylsp = {
-        plugins = {
-          ruff = { enabled = false },
-          pycodestyle = { enabled = false },
-          pyflakes = { enabled = false },
-          mccabe = { enabled = false },
-        },
-      },
-    }
-  end
-  setup_once(server, opts)
-end
-
-setup_once("ruff", {
+vim.lsp.config('*', {
   capabilities = capabilities,
-  cmd = { "ruff", "server", "--config", vim.fn.expand("~/.config/ruff/ruff.toml") },
 })
 
-
-vim.api.nvim_create_autocmd("LspAttach", {
-  group = vim.api.nvim_create_augroup("RuffTweak", { clear = true }),
-  callback = function(args)
-    local client = vim.lsp.get_client_by_id(args.data.client_id)
-    if client and client.name == "ruff" then
-      client.server_capabilities.hoverProvider = false
-    end
-  end,
+vim.lsp.config('pylsp', {
+  settings = {
+    pylsp = {
+      plugins = {
+        ruff        = { enabled = false },
+        pycodestyle = { enabled = false },
+        pyflakes    = { enabled = false },
+        mccabe      = { enabled = false },
+      },
+    },
+  },
 })
+
+vim.lsp.config('ruff', {
+  cmd = { 'ruff', 'server', '--config', vim.fn.expand('~/.config/ruff/ruff.toml') },
+})
+
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('pylsp')
+vim.lsp.enable('ruff')
 

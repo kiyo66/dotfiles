@@ -2,7 +2,9 @@
 
 if status is-interactive
 
+    alias pys='python3 /home/ogawa/workspace/src/SwinTransformer-T/quant/main.py -c /home/ogawa/workspace/src/SwinTransformer-T/config.toml'
     alias py='python3'
+    alias cds='cd /home/ogawa/workspace/src/SwinTransformer-T'
     alias c='clear'
     alias vim="nvim"
     alias t='tmux'
@@ -29,4 +31,5 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
-fish_add_path $HOME/.config/nvim-v0.11.0/nvim-linux-x86_64/bin
+fish_add_path ~/nvim-linux-x86_64/bin/
+
