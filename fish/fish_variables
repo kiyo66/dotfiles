@@ -30,6 +30,7 @@ SETUVAR fish_pager_color_prefix:normal\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
 <<<<<<< HEAD
+<<<<<<< HEAD
 SETUVAR fish_user_paths:/home/ogawa/node_modules/\x2ebin\x1e/home/ogawa/\x2econfig/nvim\x2dv0\x2e11\x2e0/nvim\x2dlinux\x2dx86_64/bin\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/sbin\x1e/usr/bin\x1e/sbin\x1e/bin\x1e/usr/games\x1e/usr/local/games\x1e/snap/bin
 =======
 <<<<<<< HEAD
@@ -38,3 +39,6 @@ SETUVAR fish_user_paths:/Users/ogawa/\x2econfig/nvim\x2dmacos\x2darm64/bin
 SETUVAR fish_user_paths:/home/ogawa/node_modules/\x2ebin\x1e/home/ogawa/\x2econfig/nvim\x2dv0\x2e11\x2e0/nvim\x2dlinux\x2dx86_64/bin\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/sbin\x1e/usr/bin\x1e/sbin\x1e/bin\x1e/usr/games\x1e/usr/local/games\x1e/snap/bin
 >>>>>>> 47ebeb2 (init)
 >>>>>>> 5f116ac (init)
+=======
+SETUVAR fish_user_paths:/home/ogawa/node_modules/\x2ebin\x1e/home/ogawa/\x2econfig/nvim\x2dv0\x2e11\x2e0/nvim\x2dlinux\x2dx86_64/bin\x1e/usr/local/sbin\x1e/usr/local/bin\x1e/usr/sbin\x1e/usr/bin\x1e/sbin\x1e/bin\x1e/usr/games\x1e/usr/local/games\x1e/snap/bin
+>>>>>>> 5a08921 (init)

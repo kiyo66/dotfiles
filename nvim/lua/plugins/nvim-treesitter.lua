@@ -2,6 +2,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
 <<<<<<< HEAD
+<<<<<<< HEAD
     branch = "master",
 =======
 <<<<<<< HEAD
@@ -23,6 +24,8 @@ return {
 =======
     branch = "main",
 =======
+=======
+>>>>>>> 5a08921 (init)
     branch = "master",
     build = ":TSUpdate",
     event = { "BufReadPost", "BufNewFile" },
@@ -35,8 +38,11 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
+<<<<<<< HEAD
 >>>>>>> 47ebeb2 (init)
 >>>>>>> 5f116ac (init)
+=======
+>>>>>>> 5a08921 (init)
     dependencies = { "nvim-treesitter/nvim-treesitter" },
   },
 }
