@@ -33,105 +33,28 @@ vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "#7f7f7f", bg = "NONE" })
 
 vim.opt.termguicolors = true
 
-opt.clipboard = "unnamedplus"
-
-local function has(bin) return vim.fn.executable(bin) == 1 end
-local function paste() return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") } end
-
-local env = vim.env
-local is_ssh = (env.SSH_TTY and #env.SSH_TTY > 0) or (env.SSH_CONNECTION and #env.SSH_CONNECTION > 0)
-local force_osc52 = (env.NVIM_CLIPBOARD_FORCE_OSC52 == "1") or is_ssh
-
-local osc_ok, osc52_mod = pcall(require, "vim.ui.clipboard.osc52")
-
-local function osc52_provider()
-    if not osc_ok then
-        if has("wl-copy") then
-            return {
-                name = "wl-clipboard",
-                copy = {
-                    ["+"] = { "wl-copy", "--foreground", "--type", "text/plain" },
-                    ["*"] = { "wl-copy", "--foreground", "--primary", "--type", "text/plain" },
-                },
-                paste = {
-                    ["+"] = { "wl-paste", "--no-newline" },
-                    ["*"] = { "wl-paste", "--primary", "--no-newline" },
-                },
-            }
-        elseif has("xclip") then
-            return {
-                name = "xclip",
-                copy = {
-                    ["+"] = { "xclip", "-selection", "clipboard" },
-                    ["*"] = { "xclip", "-selection", "primary" },
-                },
-                paste = {
-                    ["+"] = { "xclip", "-selection", "clipboard", "-o" },
-                    ["*"] = { "xclip", "-selection", "primary", "-o" },
-                },
-            }
-        elseif has("xsel") then
-            return {
-                name = "xsel",
-                copy = {
-                    ["+"] = { "xsel", "--clipboard", "--input" },
-                    ["*"] = { "xsel", "--primary", "--input" },
-                },
-                paste = {
-                    ["+"] = { "xsel", "--clipboard", "--output" },
-                    ["*"] = { "xsel", "--primary", "--output" },
-                },
-            }
-        end
-    end
-    return {
-        name = "OSC 52",
-        copy = {
-            ["+"] = osc52_mod.copy("+"),
-            ["*"] = osc52_mod.copy("*"),
-        },
-        paste = { ["+"] = paste, ["*"] = paste },
-    }
+-- Clipboard: OSC52 only
+local function paste()
+    return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
 end
 
-if force_osc52 then
-    vim.g.clipboard = osc52_provider()
-elseif has("wl-copy") then
-    vim.g.clipboard = {
-        name = "wl-clipboard",
-        copy = {
-            ["+"] = { "wl-copy", "--foreground", "--type", "text/plain" },
-            ["*"] = { "wl-copy", "--foreground", "--primary", "--type", "text/plain" },
-        },
-        paste = {
-            ["+"] = { "wl-paste", "--no-newline" },
-            ["*"] = { "wl-paste", "--primary", "--no-newline" },
-        },
-    }
-elseif has("xclip") then
-    vim.g.clipboard = {
-        name = "xclip",
-        copy = {
-            ["+"] = { "xclip", "-selection", "clipboard" },
-            ["*"] = { "xclip", "-selection", "primary" },
-        },
-        paste = {
-            ["+"] = { "xclip", "-selection", "clipboard", "-o" },
-            ["*"] = { "xclip", "-selection", "primary", "-o" },
-        },
-    }
-elseif has("xsel") then
-    vim.g.clipboard = {
-        name = "xsel",
-        copy = {
-            ["+"] = { "xsel", "--clipboard", "--input" },
-            ["*"] = { "xsel", "--primary", "--input" },
-        },
-        paste = {
-            ["+"] = { "xsel", "--clipboard", "--output" },
-            ["*"] = { "xsel", "--primary", "--output" },
-        },
-    }
+local ok, osc52 = pcall(require, "vim.ui.clipboard.osc52")
+
+if not ok then
+    vim.notify(
+        "vim.ui.clipboard.osc52 is not available. OSC52 clipboard is disabled.",
+        vim.log.levels.ERROR
+    )
 else
-    vim.g.clipboard = osc52_provider()
+    vim.g.clipboard = {
+        name = "OSC 52",
+        copy = {
+            ["+"] = osc52.copy("+"),
+            ["*"] = osc52.copy("*"),
+        },
+        paste = {
+            ["+"] = paste,
+            ["*"] = paste,
+        },
+    }
 end

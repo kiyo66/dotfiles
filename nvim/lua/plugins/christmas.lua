@@ -1,0 +1,3 @@
+return {
+    "skanehira/christmas.vim",
+}

@@ -1,30 +1,18 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        build = ":TSUpdate",
-        main = "nvim-treesitter.configs",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-        },
-        opts = {
-            ensure_installed = {
-                'lua',
-                'vim',
-                'vimdoc',
-                'markdown',
-                'markdown_inline',
-                'python',
-            },
-            sync_install = false,
-            auto_install = true,
-            highlight = {
-                enable = true,
-            },
-        },
-    },
-    {
-        "nvim-treesitter/nvim-treesitter-textobjects",
-        event = "CursorMoved",
-    },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "master",
+    build = ":TSUpdate",
+    event = { "BufReadPost", "BufNewFile" },
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "python", "lua", "vim", "vimdoc" },
+        highlight = { enable = true },
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+  },
 }
-

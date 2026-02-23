@@ -2,9 +2,10 @@
 
 if status is-interactive
 
-    alias pys='python3 /home/ogawa/workspace/src/SwinTransformer-T/quant/main.py -c /home/ogawa/workspace/src/SwinTransformer-T/config.toml'
     alias py='python3'
-    alias cds='cd /home/ogawa/workspace/src/SwinTransformer-T'
+    alias cdw='cd $HOME/workspace'
+    alias cds='cd $HOME/workspace/Swin_t'
+    alias cdi="cd $HOME/workspace/interstella"
     alias c='clear'
     alias vim="nvim"
     alias t='tmux'
