@@ -4,8 +4,6 @@ if status is-interactive
 
     alias py='python3'
     alias cdw='cd $HOME/workspace'
-    alias cds='cd $HOME/workspace/Swin_t'
-    alias cdi="cd $HOME/workspace/interstella"
     alias c='clear'
     alias vim="nvim"
     alias t='tmux'

@@ -33,12 +33,23 @@ vim.api.nvim_set_hl(0, "StatusLineNC", { fg = "#7f7f7f", bg = "NONE" })
 
 vim.opt.termguicolors = true
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+local function has(bin) return vim.fn.executable(bin) == 1 end
+local function paste() return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") } end
+=======
+>>>>>>> 5f116ac (init)
 -- Clipboard: OSC52 only
 local function paste()
     return { vim.fn.split(vim.fn.getreg(""), "\n"), vim.fn.getregtype("") }
 end
 
 local ok, osc52 = pcall(require, "vim.ui.clipboard.osc52")
+<<<<<<< HEAD
+=======
+>>>>>>> 47ebeb2 (init)
+>>>>>>> 5f116ac (init)
 
 if not ok then
     vim.notify(
