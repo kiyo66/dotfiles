@@ -48,21 +48,6 @@ map("n", "gl", "gt", opts)
 map("n", "gh", "gT", opts)
 
 -- debug dap
-<<<<<<< HEAD
-map('n', '<F5>', ':DapContinue<CR>', { silent = true })
-map('n', '<F10>', ':DapStepOver<CR>', { silent = true })
-map('n', '<F11>', ':DapStepInto<CR>', { silent = true })
-map('n', '<F12>', ':DapStepOut<CR>', { silent = true })
-map('n', '<leader>b', ':DapToggleBreakpoint<CR>', { silent = true })
-map('n', '<leader>B', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Breakpoint condition: "))<CR>',
-    { silent = true })
-map('n', '<leader>lp', ':lua require("dap").set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
-    { silent = true })
-map('n', '<leader>dr', ':lua require("dap").repl.open()<CR>', { silent = true })
-map('n', '<leader>dl', ':lua require("dap").run_last()<CR>', { silent = true })
--- debug dap ui
-map('n', '<leader>d', ':lua require("dapui").toggle()<CR>', {})
-=======
 map("n", "<F5>", "<cmd>DapContinue<CR>", opts)
 map("n", "<leader>ds", "<cmd>DapContinue<CR>", opts)
 map("n", "<leader>de", "<cmd>lua require('dap').terminate()<CR>", opts)
@@ -80,7 +65,6 @@ map("n", "<leader>dl", "<cmd>lua require('dap').run_last()<CR>", opts)
 map("n", "<leader>du", "<cmd>lua require('dapui').toggle()<CR>", opts)
 map("n", "<leader>dt", "<cmd>lua require('dap-python').test_method()<CR>", opts)
 map("n", "<leader>dT", "<cmd>lua require('dap-python').test_class()<CR>", opts)
->>>>>>> bd5e663 (init)
 
 --batch conversion
 function ReplaceWord()
