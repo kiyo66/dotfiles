@@ -1,3 +1,0 @@
-return {
-    "skanehira/christmas.vim",
-}
