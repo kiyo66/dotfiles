@@ -20,7 +20,7 @@ The script installs the required binaries, links configuration files, and ensure
      ```
    - Ensures the Neovim binary is executable:
      ```
-     ~/.config/nvim-<version>/nvim-linux-x86_64/bin/nvim
+     ~/.config/nvim-<version>/bin/nvim
      ```
 
 3. **Creates Symlinks for Configurations**
