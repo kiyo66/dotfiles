@@ -30,5 +30,3 @@ set __fish_git_prompt_char_stashstate '↩'
 set __fish_git_prompt_char_upstream_ahead '+'
 set __fish_git_prompt_char_upstream_behind '-'
 
-fish_add_path ~/.config/nvim-v0.12.0/nvim-linux-x86_64/bin
-
