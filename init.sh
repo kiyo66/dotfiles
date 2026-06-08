@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-NVIM_VERSION="v0.11.0"
+NVIM_VERSION="v0.12.0"
 NVIM_TARBALL="nvim-linux-x86_64.tar.gz"
 NVIM_URL="https://github.com/neovim/neovim/releases/download/${NVIM_VERSION}/${NVIM_TARBALL}"
 NVIM_HOME="${HOME}/.config/nvim-${NVIM_VERSION}"
