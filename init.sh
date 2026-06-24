@@ -14,6 +14,7 @@ source "${LIB_DIR}/neovim.sh"
 
 REPO_NVIM="${SCRIPT_DIR}/nvim"
 REPO_FISH="${SCRIPT_DIR}/fish"
+REPO_GHOSTTY="${SCRIPT_DIR}/ghostty"
 
 OS_ID="$(detect_os)"
 ARCH_ID="$(detect_arch)"
@@ -29,9 +30,11 @@ if is_windows; then
 
   NVIM_CONFIG="${LOCALAPPDATA_UNIX}/nvim"
   FISH_CONFIG="${HOME}/.config/fish"
+  GHOSTTY_CONFIG="${HOME}/.config/ghostty"
 else
   NVIM_CONFIG="${XDG_CONFIG_HOME}/nvim"
   FISH_CONFIG="${XDG_CONFIG_HOME}/fish"
+  GHOSTTY_CONFIG="${XDG_CONFIG_HOME}/ghostty"
 fi
 
 configure_nvim_paths
@@ -44,6 +47,7 @@ log_info "Neovim home: ${NVIM_HOME}"
 log_info "Neovim binary: ${NVIM_BIN}"
 log_info "Neovim config: ${NVIM_CONFIG}"
 log_info "fish config: ${FISH_CONFIG}"
+log_info "ghostty config: ${GHOSTTY_CONFIG}"
 
 if [ ! -d "${REPO_NVIM}" ]; then
   log_error "Repository Neovim config directory not found: ${REPO_NVIM}"
@@ -52,6 +56,10 @@ fi
 
 if [ ! -d "${REPO_FISH}" ]; then
   log_warn "Repository fish config directory not found: ${REPO_FISH}"
+fi
+
+if [ ! -d "${REPO_GHOSTTY}" ]; then
+  log_warn "Repository ghostty config directory not found: ${REPO_GHOSTTY}"
 fi
 
 install_fish || true
@@ -67,6 +75,10 @@ if [ -d "${REPO_FISH}" ]; then
   else
     log_warn "fish command not found. Skipping fish config link."
   fi
+fi
+
+if [ -d "${REPO_GHOSTTY}" ]; then
+  make_link "${REPO_GHOSTTY}" "${GHOSTTY_CONFIG}"
 fi
 
 echo "[SUCCESS] Initialization complete."
